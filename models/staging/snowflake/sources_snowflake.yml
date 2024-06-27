@@ -1,0 +1,42 @@
+version: 2
+
+sources:
+  - name: snowflake
+    database: fea24_4  
+    schema: raw_adventure_works
+    tables:
+      - name: product
+      - name: creditcard
+      - name: personcreditcard
+      - name: person
+      - name: salesorderdetail
+      - name: salesorderheader
+      - name: salesorderheadersalesreason
+      - name: salesreason
+      - name: address
+      - name: stateprovince
+      - name: coutryregion
+      - name: salesperson
+      - name: employee
+      - name: salesterritory
+      - name: customer
+
+
+
+
+      
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
