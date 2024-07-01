@@ -15,9 +15,8 @@ sources:
       - name: salesreason
       - name: address
       - name: stateprovince
-      - name: coutryregion
+      - name: countryregion
       - name: salesperson
-      - name: employee
       - name: salesterritory
       - name: customer
 
