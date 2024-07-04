@@ -1,21 +1,13 @@
-with
-    source_products as (
-        select
-            cast(productid as int) as pk_product
-            , cast(productsubcategoryid as varchar) as subcategoryid_product
-            , cast(productmodelid as varchar) as modelid_product
-            , cast(name as varchar) as name_product
-            , cast(productnumber as varchar) as number_product
-            , cast(standardcost as varchar) as satandarcost_product
-            , cast(listprice as varchar) as listprice_product
-            , cast(productline as varchar) as line_product
-            , cast(class as varchar) as class_product
-            
-        from {{ source("snowflake", "product") }}
+WITH source_products AS (
+    SELECT 
+        CAST(productid AS INT) AS pk_product,
+        CAST(productsubcategoryid AS VARCHAR) AS subcategoryid_product,
+        CAST(productmodelid AS VARCHAR) AS modelid_product,
+        CAST(name AS VARCHAR) AS name_product,
+        CAST(color AS VARCHAR) AS name_color,
+        CAST(size AS VARCHAR) AS name_size,
+    FROM {{ source("snowflake", "product") }}
+)
 
-    )
-
-select *
-from
-    source_products
-  
+SELECT *
+FROM source_products
