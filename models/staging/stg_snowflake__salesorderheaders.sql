@@ -8,8 +8,7 @@ with
             , cast(creditcardid as int) as fk_creditcardid
             , cast(orderdate as varchar) as salesorderheader_orderdate
             , cast(status as int) as salesorderheader_status
-            , cast(totaldue as varchar) as salesorderheader_totaldue
-            , cast(subtotal as varchar) as salesorderheader_subtotal
+            , cast(totaldue as numeric(18,2)) as salesorderheader_totaldue
 
         from {{ source("snowflake", "salesorderheader") }}
 

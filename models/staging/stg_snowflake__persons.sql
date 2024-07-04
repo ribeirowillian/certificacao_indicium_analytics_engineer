@@ -1,17 +1,16 @@
-with
-    source_persons as (
-        select
-            cast(businessentityid as int) as pk_businessentityid
-            , cast(persontype as varchar) as person_persontype
-            , cast(firstname as varchar) as person_firstname
-            , cast(middlename as varchar) as person_middlename
-            , cast(lastname as varchar) as person_lastname
-            , cast(emailpromotion as varchar) as person_emailpromotion
-            , cast(modifieddate as varchar) as person_modifieddate
-
-        from {{ source("snowflake", "person") }}
-
+WITH
+    source_persons AS (
+        SELECT 
+            CAST(businessentityid AS INT) AS pk_businessentityid,
+            CAST(persontype AS VARCHAR) AS person_persontype,
+            TRIM(
+                COALESCE(CAST(firstname AS VARCHAR), '') || 
+                CASE WHEN middlename IS NOT NULL THEN ' ' || CAST(middlename AS VARCHAR) ELSE '' END || 
+                CASE WHEN lastname IS NOT NULL THEN ' ' || CAST(lastname AS VARCHAR) ELSE '' END
+            ) AS person_fullname,
+            CAST(emailpromotion AS VARCHAR) AS person_emailpromotion,
+            CAST(modifieddate AS VARCHAR) AS person_modifieddate
+        FROM {{ source("snowflake", "person") }}
     )
-
-select *
-from source_persons
+SELECT *
+FROM source_persons
