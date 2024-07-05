@@ -1,8 +1,15 @@
-with 
+with
     products as (
-        select *
-        from {{ ref('stg_snowflake__products') }}
+        select
+            pk_product
+            , modelid_product
+            , name_clean_intermediate
+            , name_product
+            , name_size
+            , name_color
+
+        from {{ ref("int_snowflake__products") }}
     )
 
-select * 
+select *
 from products
