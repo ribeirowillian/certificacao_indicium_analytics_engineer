@@ -6,6 +6,8 @@ sources:
     schema: raw_adventure_works
     tables:
       - name: product
+      - name: productcategory
+      - name: productsubcategory
       - name: creditcard
       - name: personcreditcard
       - name: person
@@ -19,6 +21,7 @@ sources:
       - name: salesperson
       - name: salesterritory
       - name: customer
+      - name: store
 
 
 
