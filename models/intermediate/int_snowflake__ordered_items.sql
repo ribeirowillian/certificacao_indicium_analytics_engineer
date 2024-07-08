@@ -51,7 +51,8 @@ order_items AS (
         sod.salesorderdetails_unitpricediscount,
         CAST((soh.salesorderheader_freight / ti.total_order_qty) * sod.salesorderdetails_orderqty AS NUMERIC(18,2)) AS freight_per_item,
         CAST((soh.salesorderheader_taxamt / ti.total_order_qty) * sod.salesorderdetails_orderqty AS NUMERIC(18,2)) AS tax_per_item,
-        CAST(sod.salesorderdetails_unitprice * sod.salesorderdetails_orderqty AS NUMERIC(18,2)) AS item_subtotal
+        CAST(sod.salesorderdetails_unitprice * sod.salesorderdetails_orderqty AS NUMERIC(18,2)) AS item_subtotal,
+        CAST((sod.salesorderdetails_unitprice * (1 - sod.salesorderdetails_unitpricediscount)) * sod.salesorderdetails_orderqty AS NUMERIC(18,2)) AS discounted_item_subtotal
     FROM
         salesorderheaders soh
     LEFT JOIN
@@ -73,6 +74,7 @@ SELECT
     freight_per_item,
     tax_per_item,
     item_subtotal + freight_per_item + tax_per_item AS item_total,
+    discounted_item_subtotal AS discounted_item_total,
     salesorderheader_totaldue
 FROM
     order_items
