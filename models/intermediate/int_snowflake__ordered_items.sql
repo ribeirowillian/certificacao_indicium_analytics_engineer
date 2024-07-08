@@ -37,6 +37,10 @@ total_items_per_order AS (
 order_items AS (
     SELECT
         soh.pk_salesorderid,
+        soh.fk_customerid,
+        soh.fk_salespersonid,
+        soh.fk_territoryid,
+        soh.fk_creditcardid,
         soh.salesorderheader_orderdate,
         soh.salesorderheader_status,
         soh.salesorderheader_freight,
@@ -63,6 +67,10 @@ order_items AS (
 
 SELECT
     pk_salesorderid,
+    fk_customerid,
+    fk_salespersonid,
+    fk_territoryid,
+    fk_creditcardid,
     salesorderheader_orderdate,
     salesorderheader_status,
     pk_salesorderdetailid,
