@@ -1,11 +1,9 @@
 with
     source_stores as (
-        select *
-            -- cast(addressid as int) as pk_addressid
-            -- , cast(stateprovinceid as int) as fk_stateprovinceid
-            -- , cast(addressline1 as varchar) as address_addressline1
-            -- , cast(city as varchar) as address_city
-            -- , cast(postalcode as varchar) as address_postalcode
+        select
+            cast(businessentityid as int) as pk_businessentityid
+            , cast(salespersonid as varchar) as fk_salespersonid
+            , cast(name as varchar) as name_store
 
         from {{ source("snowflake", "store") }}
 
