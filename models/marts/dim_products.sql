@@ -1,42 +1,10 @@
-WITH 
-    source_products AS (
-        SELECT 
-            pk_product,
-            fk_productsubcategoryid,
-            fk_productmodelid,
-            name_product,
-            color,
-            sizes
-        FROM {{ ref('stg_snowflake__products') }}
-    ),
-
-    source_product_subcategorys AS (
-        SELECT
-            pk_productsubcategoryid,
-            fk_productcategoryid,
-            name_subcategory
-        FROM {{ ref('stg_snowflake__productsubcategorys') }}
-    ),
-
-    source_product_categorys AS (
-        SELECT
-            pk_productcategoryid,
-            name_category
-        FROM {{ ref('stg_snowflake__productcategorys') }}
-    )
-
-
 SELECT
-    sp.pk_product,
-    sp.fk_productsubcategoryid,
-    sp.fk_productmodelid,
-    sp.name_product,
-    sp.color,
-    sp.sizes,
-    spsc.name_subcategory,
-    spc.name_category
-FROM source_products sp
-LEFT JOIN
-    source_product_subcategorys spsc ON sp.fk_productsubcategoryid = spsc.pk_productsubcategoryid
-LEFT JOIN 
-    source_product_categorys spc ON spsc.fk_productcategoryid = spc.pk_productcategoryid
+    PK_PRODUCT,
+    FK_PRODUCTSUBCATEGORYID,
+    FK_PRODUCTMODELID,
+    NAME_PRODUCT,
+    COLOR,
+    SIZES,
+    NAME_SUBCATEGORY,
+    NAME_CATEGORY
+FROM {{ ref('int_snowflake__products') }}
