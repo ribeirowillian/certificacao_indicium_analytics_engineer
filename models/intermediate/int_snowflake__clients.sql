@@ -13,11 +13,10 @@ customers AS (
 ),
 
 persons AS (
-    SELECT
+    SELECT    
         PK_BUSINESSENTITYID,
-        PERSON_PERSONTYPE,
+        PERSONTYPE,
         PERSON_FULLNAME,
-        PERSON_EMAILPROMOTION
     FROM {{ ref('stg_snowflake__persons') }}
 ),
 
@@ -83,7 +82,7 @@ chaves AS (
         CD_VENDEDOR_ATRIBUIDO,
         TP_CLIENTE,
         NM_VENDEDOR_ATRIBUIDO,
-        NM_CLIENTE
+        NM_CLIENTE,        
     FROM uniao_tabelas
 )
 
