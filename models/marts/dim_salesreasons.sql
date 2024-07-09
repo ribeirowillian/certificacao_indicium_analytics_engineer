@@ -24,6 +24,10 @@ salesorderheadersalesreasons AS (
 ),
 order_reasons AS (
     SELECT
+        fk_customerid,
+        fk_salespersonid,
+        fk_territoryid,
+        fk_creditcardid,
         soh.pk_salesorderid,
         soh.salesorderheader_orderdate,
         soh.salesorderheader_status_description,

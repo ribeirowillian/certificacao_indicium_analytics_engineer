@@ -6,8 +6,8 @@ with
             , cast(salespersonid as int) as fk_salespersonid
             , cast(territoryid as int) as fk_territoryid
             , cast(creditcardid as int) as fk_creditcardid
-            , cast(orderdate as DATE) as salesorderheader_orderdate
-            , cast(status as int) as salesorderheader_status
+            , cast(orderdate as DATE) as oh_orderdate
+            , cast(status as int) as oh_status
             ,CASE
                 WHEN CAST(status AS INT) = 1 THEN 'Em progresso'
                 WHEN CAST(status AS INT) = 2 THEN 'Aprovado'
@@ -17,10 +17,10 @@ with
                 WHEN CAST(status AS INT) = 6 THEN 'Calcelado'
                 ELSE 'Unknown'
             END AS salesorderheader_status_description 
-            , cast (subtotal as numeric(18,2)) as salesorderheader_subtotal
-            , cast (freight as numeric(18,2)) as salesorderheader_freight
-            , cast (taxamt as numeric(18,2)) as salesorderheader_taxamt
-            , cast(totaldue as numeric(18,2)) as salesorderheader_totaldue
+            , cast (subtotal as numeric(18,2)) as oh_subtotal
+            , cast (freight as numeric(18,2)) as oh_freight
+            , cast (taxamt as numeric(18,2)) as oh_taxamt
+            , cast(totaldue as numeric(18,2)) as oh_totaldue
 
         from {{ source("snowflake", "salesorderheader") }}
 

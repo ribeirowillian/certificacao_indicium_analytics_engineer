@@ -2,7 +2,7 @@ with
     source_salesreasons as (
         select
             cast(salesreasonid as int) as pk_salesreasonid
-            , cast(name as varchar) as name_salesreason
+            , cast(name as varchar) as sr_name
         from {{ source("snowflake", "salesreason") }}
 
     )
