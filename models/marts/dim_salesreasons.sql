@@ -1,44 +1,49 @@
-WITH salesorderheaders AS (
-    SELECT
-        pk_salesorderid,
-        fk_customerid,
-        fk_salespersonid,
-        fk_territoryid,
-        fk_creditcardid,
-        salesorderheader_orderdate,
-        salesorderheader_status_description,
-        salesorderheader_totaldue
-    FROM {{ ref('stg_snowflake__salesorderheaders') }}
-),
-salesreasons AS (
-    SELECT
-        pk_salesreasonid,
-        name_salesreason
-    FROM {{ ref('stg_snowflake__salesreasons') }}
-),
-salesorderheadersalesreasons AS (
-    SELECT
-        pk_salesorderid,
-        fk_salesreasonid
-    FROM {{ ref('stg_snowflake__salesorderheadersalesreasons') }}
-),
-order_reasons AS (
-    SELECT
-        fk_customerid,
-        fk_salespersonid,
-        fk_territoryid,
-        fk_creditcardid,
-        soh.pk_salesorderid,
-        soh.salesorderheader_orderdate,
-        soh.salesorderheader_status_description,
-        soh.salesorderheader_totaldue,
-        sr.pk_salesreasonid,
-        sr.name_salesreason
-    FROM
-        salesorderheaders soh
-    LEFT JOIN
-        salesorderheadersalesreasons sohsr ON soh.pk_salesorderid = sohsr.pk_salesorderid
-    LEFT JOIN
-        salesreasons sr ON sohsr.fk_salesreasonid = sr.pk_salesreasonid
-)
-SELECT * FROM order_reasons
+with
+    salesorderheaders as (
+        select
+            pk_salesorderid,
+            fk_customerid,
+            fk_salespersonid,
+            fk_territoryid,
+            fk_creditcardid,
+            oh_orderdate,
+            oh_status,
+            oh_status_description,
+            oh_subtotal,
+            oh_freight,
+            oh_taxamt,
+            oh_totaldue
+        from {{ ref("stg_snowflake__salesorderheaders") }}
+    ),
+    salesreasons as (
+        select 
+            pk_salesreasonid,
+            reason_for_sale
+        from {{ ref("stg_snowflake__salesreasons") }}
+    ),
+    salesorderheadersalesreasons as (
+        select 
+            pk_salesorderid,
+            fk_salesreasonid
+        from {{ ref("stg_snowflake__salesorderheadersalesreasons") }}
+    ),
+    order_reasons as (
+        select
+            fk_customerid,
+            fk_salespersonid,
+            fk_territoryid,
+            fk_creditcardid,
+            soh.pk_salesorderid,
+            soh.oh_orderdate,
+            soh.oh_status_description,
+            soh.oh_totaldue,
+            sr.pk_salesreasonid,
+            sr.reason_for_sale
+        from salesorderheaders soh
+        left join
+            salesorderheadersalesreasons sohsr on soh.pk_salesorderid = sohsr.pk_salesorderid
+        left join 
+            salesreasons sr on sohsr.fk_salesreasonid = sr.pk_salesreasonid
+    )
+select *
+from order_reasons

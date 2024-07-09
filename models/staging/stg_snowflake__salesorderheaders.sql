@@ -16,7 +16,7 @@ with
                 WHEN CAST(status AS INT) = 5 THEN 'Enviado'
                 WHEN CAST(status AS INT) = 6 THEN 'Calcelado'
                 ELSE 'Unknown'
-            END AS salesorderheader_status_description 
+            END AS oh_status_description 
             , cast (subtotal as numeric(18,2)) as oh_subtotal
             , cast (freight as numeric(18,2)) as oh_freight
             , cast (taxamt as numeric(18,2)) as oh_taxamt
