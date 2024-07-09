@@ -1,39 +1,31 @@
--- models/joined_address_data.sql
+with
+    address as (
+        select pk_addressid, fk_stateprovinceid, address, city, postalcode
+        from {{ ref("stg_snowflake__address") }}
+    ),
 
-WITH address AS (
-    SELECT
-        pk_addressid,
-        address_addressline1,
-        address_city,
-        fk_stateprovinceid,
-        address_postalcode
-    FROM {{ ref('stg_snowflake__address') }}
-),
+    stateprovinces as (
+        select
+            pk_stateprovinceid,
+            fk_territoryid,
+            sp_stateprovincecode,
+            sp_countryregioncode,
+            sp_name_stateprovince
+        from {{ ref("stg_snowflake__stateprovinces") }}
+    ),
 
-stateprovinces AS (
-    SELECT
-        pk_stateprovinceid,
-        fk_territoryid,
-        fk_stateprovinces_stateprovincecode,
-        stateprovinces_countryregioncode,
-        stateprovinces_name
-    FROM {{ ref('stg_snowflake__stateprovinces') }}
-),
+    countryregions as (
+        select pk_countryregioncode, name_country
+        from {{ ref("stg_snowflake__countryregions") }}
+    )
 
-countryregions AS (
-    SELECT
-        pk_countryregioncode,
-        countryregion_name
-    FROM {{ ref('stg_snowflake__countryregions') }}
-)
-
-SELECT
+select
     a.pk_addressid,
-    a.address_addressline1,
-    a.address_city,
-    a.address_postalcode,
-    sp.stateprovinces_name,
-    cr.countryregion_name
-FROM address a
-LEFT JOIN stateprovinces sp ON a.fk_stateprovinceid = sp.pk_stateprovinceid
-LEFT JOIN countryregions cr ON sp.stateprovinces_countryregioncode = cr.pk_countryregioncode
+    a.address,
+    a.city,
+    a.postalcode,
+    sp.sp_name_stateprovince,
+    cr.name_country
+from address a
+left join stateprovinces sp on a.fk_stateprovinceid = sp.pk_stateprovinceid
+left join countryregions cr on sp.sp_countryregioncode = cr.pk_countryregioncode
