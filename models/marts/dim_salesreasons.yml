@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: dim_salesreasons
+    description: Dimensão que contém informações sobre os motivos das vendas.
+    columns:
+      - name: PK_SALESREASONID
+        description: Chave primária que identifica o motivo da venda.
+      - name: FK_CUSTOMERID
+        description: Chave estrangeira que referencia o cliente.
+      - name: FK_SALESPERSONID
+        description: Chave estrangeira que referencia o vendedor.
+      - name: FK_TERRITORYID
+        description: Chave estrangeira que referencia o território.
+      - name: FK_CREDITCARDID
+        description: Chave estrangeira que referencia o cartão de crédito.
+      - name: REASON_FOR_SALE
+        description: Descrição do motivo da venda.

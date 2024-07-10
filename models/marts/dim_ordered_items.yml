@@ -1,0 +1,45 @@
+version: 2
+
+models:
+  - name: dim_ordered_items
+    description: Dimensão que agrega outras dimensões para detalhar melhor as vendas.
+    columns:
+      - name: PK_SALESORDERDETAILID
+        description: Chave primária que identifica o detalhe do pedido.
+        tests:
+            - unique
+            - not_null
+      - name: pk_salesorderid
+        description: Chave primária da tabela salesorderheaders.
+      - name: FK_CUSTOMERID
+        description: Chave estrangeira que referencia o cliente.
+      - name: FK_SALESPERSONID
+        description: Chave estrangeira que referencia o vendedor.
+      - name: FK_TERRITORYID
+        description: Chave estrangeira que referencia o território.
+      - name: FK_CREDITCARDID
+        description: Chave estrangeira que referencia o cartão de crédito.
+      - name: OH_ORDERDATE
+        description: Data do pedido.
+      - name: OH_STATUS
+        description: Status do pedido.
+      - name: FK_PRODUCTID
+        description: Chave estrangeira que referencia o produto.
+      - name: FK_SPECIALOFFERID
+        description: Chave estrangeira que referencia a oferta especial.
+      - name: OD_ORDERQTY
+        description: Quantidade de itens no pedido.
+      - name: OD_UNITPRICE
+        description: Preço unitário do item.
+      - name: OD_UNITPRICEDISCOUNT
+        description: Desconto aplicado no preço unitário do item.
+      - name: FREIGHT_PER_ITEM
+        description: Custo de frete por item.
+      - name: TAX_PER_ITEM
+        description: Imposto aplicado por item.
+      - name: ITEM_TOTAL
+        description: Total do item considerando a quantidade e o preço unitário.
+      - name: DISCOUNTED_ITEM_TOTAL
+        description: Total do item considerando os descontos aplicados.
+      - name: OH_TOTALDUE
+        description: Total devido pelo pedido.
