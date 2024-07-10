@@ -1,6 +1,7 @@
 WITH fact_sales_keys_only AS (
     SELECT
         oi.FK_CUSTOMERID,
+        oi.fk_addressid,
         oi.FK_SALESPERSONID,
         oi.FK_TERRITORYID,
         oi.FK_CREDITCARDID,

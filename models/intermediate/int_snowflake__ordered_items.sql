@@ -1,12 +1,14 @@
 WITH salesorderheaders AS (
     SELECT
         pk_salesorderid,
+        fk_addressid,
         fk_customerid,
         fk_salespersonid,
         fk_territoryid,
         fk_creditcardid,
         oh_orderdate,
         oh_status,
+        OH_STATUS_DESCRIPTION,
         oh_freight,
         oh_taxamt,
         oh_totaldue,
@@ -37,12 +39,14 @@ total_items_per_order AS (
 order_items AS (
     SELECT
         soh.pk_salesorderid,
+        soh.fk_addressid,
         soh.fk_customerid,
         soh.fk_salespersonid,
         soh.fk_territoryid,
         soh.fk_creditcardid,
         soh.oh_orderdate,
         soh.oh_status,
+        OH_STATUS_DESCRIPTION,
         soh.oh_freight,
         soh.oh_taxamt,
         soh.oh_totaldue,
@@ -67,12 +71,14 @@ order_items AS (
 
 SELECT
     pk_salesorderid,
+    fk_addressid,
     fk_customerid,
     fk_salespersonid,
     fk_territoryid,
     fk_creditcardid,
     oh_orderdate,
     oh_status,
+    OH_STATUS_DESCRIPTION,
     pk_salesorderdetailid,
     fk_productid,
     fk_specialofferid,
