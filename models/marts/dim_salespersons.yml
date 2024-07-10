@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: dim_salespersons
+    description: Dimensão que contém informações sobre os vendedores.
+    columns:
+      - name: PK_BUSINESSENTITYID
+        description: Chave primária que identifica a entidade do vendedor.
+      - name: FK_TERRITORYID
+        description: Chave estrangeira que referencia o território do vendedor.

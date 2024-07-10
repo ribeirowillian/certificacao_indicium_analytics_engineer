@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: dim_products
+    description: Dimensão que contém informações sobre os produtos.
+    columns:
+      - name: PK_PRODUCT
+        description: Chave primária que identifica o produto.
+      - name: FK_PRODUCTSUBCATEGORYID
+        description: Chave estrangeira que referencia a subcategoria do produto.
+      - name: FK_PRODUCTMODELID
+        description: Chave estrangeira que referencia o modelo do produto.
+      - name: NAME_PRODUCT
+        description: Nome do produto.
+      - name: COLOR
+        description: Cor do produto.
+      - name: SIZES
+        description: Tamanhos disponíveis para o produto.
+      - name: NAME_SUBCATEGORY
+        description: Nome da subcategoria do produto.
+      - name: NAME_CATEGORY
+        description: Nome da categoria do produto.

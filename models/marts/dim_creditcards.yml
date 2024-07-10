@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: dim_creditcards
+    description: Tabela dimensão dos cartões de créditos dos clientes.
+    columns: 
+      - name: PK_BUSINESSENTITYID
+        description: Chave primária da dimensão cartões de crédito
+        tests:
+          - unique
+          - not_null
+      - name: FK_CREDITCARDID
+        description: Chave do id do cartão de crédito do cliente
+        tests:
+          - unique
+          - not_null
+      - name: CARDTYPE
+        description: Descrição do tipo de cartão
