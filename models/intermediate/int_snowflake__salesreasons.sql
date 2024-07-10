@@ -5,14 +5,7 @@ with
             fk_customerid,
             fk_salespersonid,
             fk_territoryid,
-            fk_creditcardid,
-            oh_orderdate,
-            oh_status,
-            oh_status_description,
-            oh_subtotal,
-            oh_freight,
-            oh_taxamt,
-            oh_totaldue
+            fk_creditcardid
         from {{ ref("stg_snowflake__salesorderheaders") }}
     ),
     salesreasons as (
@@ -33,10 +26,6 @@ with
             fk_salespersonid,
             fk_territoryid,
             fk_creditcardid,
-            soh.pk_salesorderid,
-            soh.oh_orderdate,
-            soh.oh_status_description,
-            soh.oh_totaldue,
             sr.pk_salesreasonid,
             sr.reason_for_sale
         from salesorderheaders soh
