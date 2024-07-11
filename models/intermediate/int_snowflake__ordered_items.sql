@@ -60,7 +60,11 @@ order_items AS (
         CAST((soh.oh_freight / ti.total_order_qty) * sod.od_orderqty AS NUMERIC(18,2)) AS freight_per_item,
         CAST((soh.oh_taxamt / ti.total_order_qty) * sod.od_orderqty AS NUMERIC(18,2)) AS tax_per_item,
         CAST(sod.od_unitprice * sod.od_orderqty AS NUMERIC(18,2)) AS item_subtotal,
-        CAST((sod.od_unitprice * (1 - sod.od_unitpricediscount)) * sod.od_orderqty AS NUMERIC(18,2)) AS discounted_item_subtotal
+        CAST((sod.od_unitprice * (1 - sod.od_unitpricediscount)) * sod.od_orderqty AS NUMERIC(18,2)) AS discounted_item_subtotal,
+        CASE 
+            WHEN soh.fk_creditcardid IS NULL OR soh.fk_creditcardid = 0 THEN 'Outra forma de pagamento'
+            ELSE CAST(soh.fk_creditcardid AS STRING)
+        END AS creditcard_display
     FROM
         salesorderheaders soh
     LEFT JOIN
@@ -76,6 +80,7 @@ SELECT
     fk_salespersonid,
     fk_territoryid,
     fk_creditcardid,
+    creditcard_display,
     oh_orderdate,
     oh_status,
     OH_STATUS_DESCRIPTION,

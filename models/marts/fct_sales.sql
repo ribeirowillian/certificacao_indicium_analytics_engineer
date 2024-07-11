@@ -7,6 +7,7 @@ WITH fact_sales_keys_only AS (
         FK_SALESPERSONID,
         FK_TERRITORYID,
         FK_CREDITCARDID,
+        creditcard_display,
         OH_ORDERDATE,
         OH_STATUS,
         FK_PRODUCTID,
