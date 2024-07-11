@@ -1,12 +1,14 @@
 WITH salesorderheaders AS (
     SELECT
         pk_salesorderid,
+        fk_addressid,
         fk_customerid,
         fk_salespersonid,
         fk_territoryid,
         fk_creditcardid,
         oh_orderdate,
         oh_status,
+        OH_STATUS_DESCRIPTION,
         oh_freight,
         oh_taxamt,
         oh_totaldue,
@@ -37,12 +39,14 @@ total_items_per_order AS (
 order_items AS (
     SELECT
         soh.pk_salesorderid,
+        soh.fk_addressid,
         soh.fk_customerid,
         soh.fk_salespersonid,
         soh.fk_territoryid,
         soh.fk_creditcardid,
         soh.oh_orderdate,
         soh.oh_status,
+        OH_STATUS_DESCRIPTION,
         soh.oh_freight,
         soh.oh_taxamt,
         soh.oh_totaldue,
@@ -56,7 +60,11 @@ order_items AS (
         CAST((soh.oh_freight / ti.total_order_qty) * sod.od_orderqty AS NUMERIC(18,2)) AS freight_per_item,
         CAST((soh.oh_taxamt / ti.total_order_qty) * sod.od_orderqty AS NUMERIC(18,2)) AS tax_per_item,
         CAST(sod.od_unitprice * sod.od_orderqty AS NUMERIC(18,2)) AS item_subtotal,
-        CAST((sod.od_unitprice * (1 - sod.od_unitpricediscount)) * sod.od_orderqty AS NUMERIC(18,2)) AS discounted_item_subtotal
+        CAST((sod.od_unitprice * (1 - sod.od_unitpricediscount)) * sod.od_orderqty AS NUMERIC(18,2)) AS discounted_item_subtotal,
+        CASE 
+            WHEN soh.fk_creditcardid IS NULL OR soh.fk_creditcardid = 0 THEN 'Outra forma de pagamento'
+            ELSE CAST(soh.fk_creditcardid AS STRING)
+        END AS creditcard_display
     FROM
         salesorderheaders soh
     LEFT JOIN
@@ -67,12 +75,15 @@ order_items AS (
 
 SELECT
     pk_salesorderid,
+    fk_addressid,
     fk_customerid,
     fk_salespersonid,
     fk_territoryid,
     fk_creditcardid,
+    creditcard_display,
     oh_orderdate,
     oh_status,
+    OH_STATUS_DESCRIPTION,
     pk_salesorderdetailid,
     fk_productid,
     fk_specialofferid,

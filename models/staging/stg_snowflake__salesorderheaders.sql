@@ -2,6 +2,7 @@ with
     source_salesorderheaders as (
         select
             cast(salesorderid as int) as pk_salesorderid
+            , cast(SHIPTOADDRESSID as int) as fk_addressid
             , cast(customerid as int) as fk_customerid
             , cast(salespersonid as int) as fk_salespersonid
             , cast(territoryid as int) as fk_territoryid
@@ -21,6 +22,7 @@ with
             , cast (freight as numeric(18,2)) as oh_freight
             , cast (taxamt as numeric(18,2)) as oh_taxamt
             , cast(totaldue as numeric(18,2)) as oh_totaldue
+        
 
         from {{ source("snowflake", "salesorderheader") }}
 
