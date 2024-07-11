@@ -1,5 +1,6 @@
 SELECT
     PK_BUSINESSENTITYID,
     FK_CREDITCARDID,
-    CARDTYPE
+    CARDTYPE,
+    
 FROM {{ ref('int_snowflake__creditcards') }}
