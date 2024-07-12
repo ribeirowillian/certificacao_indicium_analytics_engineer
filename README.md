@@ -1,6 +1,7 @@
 # Certificação Analytics Engineer
 
 Repositório utilizado para obter a certificação de Analytics Engineer by Indicium.
+Os dados utilizados para esse teste são do banco [Adventureworks.](https://dataedo.com/download/AdventureWorks.pdf)
 
 # Objetivos
 
