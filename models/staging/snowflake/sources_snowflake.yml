@@ -2,44 +2,112 @@ version: 2
 
 sources:
   - name: snowflake
-    database: fea24_4  
+    database: fea24_4
     schema: raw_adventure_works
     tables:
       - name: product
+        columns:
+          - name: productid
+            tests:
+              - unique
+              - not_null
       - name: productcategory
+        columns:
+          - name: PRODUCTCATEGORYID
+            tests:
+              - unique
+              - not_null
+
       - name: productsubcategory
+        columns:
+          - name: PRODUCTSUBCATEGORYID
+            tests:
+              - unique
+              - not_null
       - name: creditcard
+        columns:
+          - name: CREDITCARDID
+            tests:
+              - unique
+              - not_null
       - name: personcreditcard
+        columns:
+          - name: BUSINESSENTITYID
+            tests:
+              - unique
+              - not_null
       - name: person
+        columns:
+          - name: BUSINESSENTITYID
+            tests:
+              - unique
+              - not_null
       - name: salesorderdetail
+        columns:
+          - name: SALESORDERDETAILID
+            tests:
+              - unique
+              - not_null
       - name: salesorderheader
+        columns:
+          - name: SALESORDERID
+            tests:
+              - unique
+              - not_null
       - name: salesorderheadersalesreason
       - name: salesreason
+        columns:
+          - name: SALESREASONID
+            tests:
+              - unique
+              - not_null
+
       - name: address
+        columns:
+          - name: ADDRESSID
+            tests:
+              - unique
+              - not_null
       - name: stateprovince
+        columns:
+          - name: STATEPROVINCEID
+            tests:
+              - unique
+              - not_null
+
       - name: countryregion
+        columns:
+          - name: COUNTRYREGIONCODE
+            tests:
+              - unique
+              - not_null
       - name: salesperson
+        columns:
+          - name: BUSINESSENTITYID
+            tests:
+              - unique
+              - not_null
       - name: salesterritory
+        columns:
+          - name: TERRITORYID
+            tests:
+              - unique
+              - not_null
       - name: customer
+        columns:
+          - name: CUSTOMERID
+            tests:
+              - unique
+              - not_null
       - name: store
-      - name: businessentity 
-
-
-
-
-      
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
+        columns:
+          - name: BUSINESSENTITYID
+            tests:
+              - unique
+              - not_null
+      - name: businessentity
+        columns:
+          - name: BUSINESSENTITYID
+            tests:
+              - unique
+              - not_null
