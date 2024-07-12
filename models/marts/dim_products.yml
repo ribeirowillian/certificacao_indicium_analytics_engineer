@@ -6,6 +6,9 @@ models:
     columns:
       - name: PK_PRODUCT
         description: Chave primária que identifica o produto.
+        tests:
+            - unique
+            - not_null
       - name: FK_PRODUCTSUBCATEGORYID
         description: Chave estrangeira que referencia a subcategoria do produto.
       - name: FK_PRODUCTMODELID

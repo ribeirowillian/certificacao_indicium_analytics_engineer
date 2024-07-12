@@ -6,5 +6,8 @@ models:
     columns:
       - name: PK_BUSINESSENTITYID
         description: Chave primária que identifica a entidade do vendedor.
+        tests:
+            - unique
+            - not_null
       - name: FK_TERRITORYID
         description: Chave estrangeira que referencia o território do vendedor.
