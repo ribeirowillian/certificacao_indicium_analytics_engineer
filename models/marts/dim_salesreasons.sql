@@ -1,7 +1,7 @@
-SELECT
-    PK_SALESORDERID,
-    PK_SALESREASONID,
-    FK_CUSTOMERID,
-    FK_SALESPERSONID,
-    MOTIVO_DA_VENDA
-FROM {{ ref('int_snowflake__salesreasons') }}
+select
+    pk_salesorderid
+    , pk_salesreasonid
+    , fk_customerid
+    , fk_salespersonid
+    , motivo_da_venda
+from {{ ref("int_snowflake__salesreasons") }}

@@ -5,8 +5,6 @@ with
             , cardtype
 
         from {{ source("snowflake", "creditcard") }}
-
     )
-
 select *
 from source_creditcards

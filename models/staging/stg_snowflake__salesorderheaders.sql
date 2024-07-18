@@ -28,10 +28,7 @@ with
             , cast(freight as numeric(18, 2)) as oh_freight
             , cast(taxamt as numeric(18, 2)) as oh_taxamt
             , cast(totaldue as numeric(18, 2)) as oh_totaldue
-
         from {{ source("snowflake", "salesorderheader") }}
-
     )
-
 select *
 from source_salesorderheaders

@@ -1,15 +1,15 @@
-WITH
-    source_persons AS (
-        SELECT 
-            CAST(businessentityid AS INT) AS pk_businessentityid
+with
+    source_persons as (
+        select
+            cast(businessentityid as int) as pk_businessentityid
             , persontype
-            , TRIM(
-                COALESCE(firstname, '') || 
-                CASE WHEN middlename IS NOT NULL THEN ' ' || middlename ELSE '' END || 
-                CASE WHEN lastname IS NOT NULL THEN ' ' || lastname ELSE '' END
-            ) AS person_fullname
+            , trim(
+                coalesce(firstname, '')
+                || case when middlename is not null then ' ' || middlename else '' end
+                || case when lastname is not null then ' ' || lastname else '' end
+            ) as person_fullname
             , emailpromotion
-        FROM {{ source("snowflake", "person") }}
+        from {{ source("snowflake", "person") }}
     )
-SELECT *
-FROM source_persons
+select *
+from source_persons

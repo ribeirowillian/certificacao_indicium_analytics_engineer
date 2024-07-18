@@ -1,22 +1,22 @@
-SELECT
-    PK_SALESORDERDETAILID,
-    fk_addressid,
-    pk_salesorderid,
-    FK_CUSTOMERID,
-    FK_SALESPERSONID,
-    FK_TERRITORYID,
-    FK_CREDITCARDID,
-    creditcard_display,
-    OH_ORDERDATE,
-    OH_STATUS_DESCRIPTION as OH_STATUS,
-    FK_PRODUCTID,
-    FK_SPECIALOFFERID,
-    OD_ORDERQTY,
-    OD_UNITPRICE,
-    OD_UNITPRICEDISCOUNT,
-    FREIGHT_PER_ITEM,
-    TAX_PER_ITEM,
-    ITEM_TOTAL,
-    DISCOUNTED_ITEM_TOTAL,
-    OH_TOTALDUE
-FROM {{ ref('int_snowflake__ordered_items') }}
+select
+    pk_salesorderdetailid
+    , fk_addressid
+    , pk_salesorderid
+    , fk_customerid
+    , fk_salespersonid
+    , fk_territoryid
+    , fk_creditcardid
+    , creditcard_display
+    , oh_orderdate
+    , oh_status_description as oh_status
+    , fk_productid
+    , fk_specialofferid
+    , od_orderqty
+    , od_unitprice
+    , od_unitpricediscount
+    , freight_per_item
+    , tax_per_item
+    , item_total
+    , discounted_item_total
+    , oh_totaldue
+from {{ ref("int_snowflake__ordered_items") }}

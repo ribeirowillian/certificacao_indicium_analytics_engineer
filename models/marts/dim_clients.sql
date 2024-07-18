@@ -1,10 +1,10 @@
 select
-    PK_CLIENTE,
-    CD_CLIENTE,
-    CD_LOJA,
-    CD_PESSOA,
-    CD_VENDEDOR_ATRIBUIDO,
-    TP_CLIENTE,
-    NM_VENDEDOR_ATRIBUIDO,
-    NM_CLIENTE
-FROM {{ ref('int_snowflake__clients') }}
+    pk_cliente
+    , cd_cliente
+    , cd_loja
+    , cd_pessoa
+    , cd_vendedor_atribuido
+    , tp_cliente
+    , nm_vendedor_atribuido
+    , nm_cliente
+from {{ ref("int_snowflake__clients") }}
