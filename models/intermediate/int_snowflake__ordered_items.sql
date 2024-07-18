@@ -1,5 +1,5 @@
-WITH salesorderheaders AS (
-    SELECT
+with salesorderheaders as (
+    select
         pk_salesorderid
         , addressid as fk_addressid
         , customerid as fk_customerid
@@ -8,16 +8,16 @@ WITH salesorderheaders AS (
         , creditcardid as fk_creditcardid
         , oh_orderdate
         , oh_status
-        , OH_STATUS_DESCRIPTION
+        , oh_status_description
         , oh_freight
         , oh_taxamt
         , oh_totaldue
         , oh_subtotal
-    FROM {{ ref('stg_snowflake__salesorderheaders') }}
+    from {{ ref('stg_snowflake__salesorderheaders') }}
 ),
 
-salesorderdetails AS (
-    SELECT
+salesorderdetails as (
+    select
         pk_salesorderdetailid
         , salesorderid as fk_salesorderid
         , productid as fk_productid
@@ -25,19 +25,19 @@ salesorderdetails AS (
         , od_orderqty
         , od_unitprice
         , od_unitpricediscount
-    FROM {{ ref('stg_snowflake__salesorderdetails') }}
+    from {{ ref('stg_snowflake__salesorderdetails') }}
 ),
 
-total_items_per_order AS (
-    SELECT
+total_items_per_order as (
+    select
         fk_salesorderid
-        , SUM(od_orderqty) AS total_order_qty
-    FROM salesorderdetails
-    GROUP BY fk_salesorderid
+        , sum(od_orderqty) as total_order_qty
+    from salesorderdetails
+    group by fk_salesorderid
 ),
 
-order_items AS (
-    SELECT
+order_items as (
+    select
         soh.pk_salesorderid
         , soh.fk_addressid
         , soh.fk_customerid
@@ -46,7 +46,7 @@ order_items AS (
         , soh.fk_creditcardid
         , soh.oh_orderdate
         , soh.oh_status
-        , OH_STATUS_DESCRIPTION
+        , soh.oh_status_description
         , soh.oh_freight
         , soh.oh_taxamt
         , soh.oh_totaldue
@@ -57,23 +57,23 @@ order_items AS (
         , sod.od_orderqty
         , sod.od_unitprice
         , sod.od_unitpricediscount
-        , CAST((soh.oh_freight / ti.total_order_qty) * sod.od_orderqty AS NUMERIC(18,2)) AS freight_per_item
-        , CAST((soh.oh_taxamt / ti.total_order_qty) * sod.od_orderqty AS NUMERIC(18,2)) AS tax_per_item
-        , CAST(sod.od_unitprice * sod.od_orderqty AS NUMERIC(18,2)) AS item_subtotal
-        , CAST((sod.od_unitprice * (1 - sod.od_unitpricediscount)) * sod.od_orderqty AS NUMERIC(18,2)) AS discounted_item_subtotal
-        , CASE 
-            WHEN soh.fk_creditcardid IS NULL OR soh.fk_creditcardid = 0 THEN 'Outra forma de pagamento'
-            ELSE CAST(soh.fk_creditcardid AS STRING)
-        END AS creditcard_display
-    FROM
+        , cast((soh.oh_freight / ti.total_order_qty) * sod.od_orderqty as numeric(18,2)) as freight_per_item
+        , cast((soh.oh_taxamt / ti.total_order_qty) * sod.od_orderqty as numeric(18,2)) as tax_per_item
+        , cast(sod.od_unitprice * sod.od_orderqty as numeric(18,2)) as item_subtotal
+        , cast((sod.od_unitprice * (1 - sod.od_unitpricediscount)) * sod.od_orderqty as numeric(18,2)) as discounted_item_subtotal
+        , case
+            when soh.fk_creditcardid is null or soh.fk_creditcardid = 0 then 'outra forma de pagamento'
+            else cast(soh.fk_creditcardid as string)
+        end as creditcard_display
+    from
         salesorderheaders soh
-    LEFT JOIN
-        salesorderdetails sod ON soh.pk_salesorderid = sod.fk_salesorderid
-    LEFT JOIN
-        total_items_per_order ti ON soh.pk_salesorderid = ti.fk_salesorderid
+    left join
+        salesorderdetails sod on soh.pk_salesorderid = sod.fk_salesorderid
+    left join
+        total_items_per_order ti on soh.pk_salesorderid = ti.fk_salesorderid
 )
 
-SELECT
+select
     pk_salesorderid
     , fk_addressid
     , fk_customerid
@@ -83,7 +83,7 @@ SELECT
     , creditcard_display
     , oh_orderdate
     , oh_status
-    , OH_STATUS_DESCRIPTION
+    , oh_status_description
     , pk_salesorderdetailid
     , fk_productid
     , fk_specialofferid
@@ -92,8 +92,8 @@ SELECT
     , od_unitpricediscount
     , freight_per_item
     , tax_per_item
-    , item_subtotal + freight_per_item + tax_per_item AS item_total
-    , discounted_item_subtotal AS discounted_item_total
+    , item_subtotal + freight_per_item + tax_per_item as item_total
+    , discounted_item_subtotal as discounted_item_total
     , oh_totaldue
-FROM
+from
     order_items

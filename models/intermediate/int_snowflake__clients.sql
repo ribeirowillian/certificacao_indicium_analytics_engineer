@@ -8,8 +8,8 @@ with
     customers as (
         select 
             pk_customerid
-            , territory_id as fk_territoryid
-            , person_id as fk_personid
+            , territoryid as fk_territoryid
+            , personid as fk_personid
         from {{ ref("stg_snowflake__customers") }}
     ),
 

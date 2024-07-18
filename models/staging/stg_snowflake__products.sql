@@ -1,13 +1,13 @@
-WITH source_products AS (
-    SELECT 
-        CAST(productid AS INT) AS pk_productid
-        , CAST(productsubcategoryid AS INT) AS productsubcategoryid
-        , CAST(productmodelid AS INT) AS productmodelid
-        , name AS name_product
-        , CAST(color AS VARCHAR) AS color
-        , size AS sizes
-    FROM {{ source("snowflake", "product") }}
-)
-
-SELECT *
-FROM source_products
+with
+    source_products as (
+        select
+            cast(productid as int) as pk_productid
+            , cast(productsubcategoryid as int) as productsubcategoryid
+            , cast(productmodelid as int) as productmodelid
+            , name as name_product
+            , cast(color as varchar) as color
+            , size as sizes
+        from {{ source("snowflake", "product") }}
+    )
+select *
+from source_products

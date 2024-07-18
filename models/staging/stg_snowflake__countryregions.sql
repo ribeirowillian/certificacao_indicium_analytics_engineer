@@ -5,8 +5,6 @@ with
             , name as name_country
 
         from {{ source("snowflake", "countryregion") }}
-
     )
-
 select *
 from source_countryregions

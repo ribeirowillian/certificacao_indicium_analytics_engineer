@@ -1,8 +1,8 @@
 with
     address as (
         select 
-            address_id as pk_addressid 
-            , stateprovince_id as fk_stateprovinceid 
+            addressid as pk_addressid 
+            , stateprovinceid as fk_stateprovinceid 
             , address
             , city
             , postalcode

@@ -6,6 +6,5 @@ with
 
         from {{ source("snowflake", "productcategory") }}
     )
-
 select *
 from source_productcategorys
