@@ -1,11 +1,11 @@
 with
     source_address as (
         select
-            cast(addressid as int) as pk_addressid
-            , cast(stateprovinceid as int) as fk_stateprovinceid
-            , cast(addressline1 as varchar) as address
-            , cast(city as varchar) as city
-            , cast(postalcode as varchar) as postalcode
+            cast(addressid as int) as address_id
+            , cast(stateprovinceid as int) as stateprovince_id
+            , addressline1 as address
+            , city
+            , postalcode
 
         from {{ source("snowflake", "address") }}
 

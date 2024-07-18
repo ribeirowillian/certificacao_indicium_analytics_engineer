@@ -1,6 +1,11 @@
 with
     address as (
-        select pk_addressid, fk_stateprovinceid, address, city, postalcode
+        select 
+            address_id as pk_addressid, 
+            stateprovince_id as fk_stateprovinceid, 
+            address, 
+            city, 
+            postalcode
         from {{ ref("stg_snowflake__address") }}
     ),
 
