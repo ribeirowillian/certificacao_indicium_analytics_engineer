@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: stg_snowflake__salesorderheadersalesreasons
+    description: Esta tabela contém a relação entre ordens de venda e as razões de venda associadas. 
+      A tabela `salesorderheadersalesreason` armazena as razões pelas quais cada ordem de venda foi realizada.
+    columns:
+      - name: pk_salesorderid
+        description: ID único da ordem de venda. 
+          Esta coluna é uma chave primária que identifica exclusivamente uma ordem de venda.
+      - name: fk_salesreasonid
+        description: ID da razão de venda associada à ordem de venda. 
+          Refere-se à razão específica pela qual a venda foi realizada.

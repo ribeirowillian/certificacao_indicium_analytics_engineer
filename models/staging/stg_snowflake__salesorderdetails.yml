@@ -1,0 +1,24 @@
+version: 2
+
+models:
+  - name: stg_snowflake__salesorderdetails
+    description: Esta tabela contém detalhes sobre as ordens de vendas. 
+      A tabela `salesorderdetail` armazena informações detalhadas sobre cada item de ordem de venda.
+    columns:
+      - name: pk_salesorderdetailid
+        description: ID único do detalhe da ordem de venda. 
+          Esta coluna é uma chave primária que identifica exclusivamente os detalhes de ordem de venda.
+      - name: salesorderid
+        description: ID da ordem de venda à qual o detalhe pertence. 
+          Refere-se à ordem de venda correspondente.
+      - name: productid
+        description: ID do produto vendido. 
+          Refere-se ao produto correspondente.
+      - name: specialofferid
+        description: ID da oferta especial aplicada ao item da ordem de venda.
+      - name: od_orderqty
+        description: Quantidade de produto ordenada.
+      - name: od_unitprice
+        description: Preço unitário do produto.
+      - name: od_unitpricediscount
+        description: Desconto aplicado ao preço unitário do produto.

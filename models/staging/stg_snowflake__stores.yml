@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: stg_snowflake__stores
+    description: Esta tabela contém informações sobre as lojas. 
+      A tabela `store` armazena detalhes sobre as lojas, incluindo entidades de negócios, vendedores e nomes das lojas.
+    columns:
+      - name: pk_businessentityid
+        description: ID único da entidade de negócios (loja). 
+          Esta coluna é uma chave primária que identifica exclusivamente uma loja.
+      - name: salespersonid
+        description: ID do vendedor associado à loja.
+      - name: name_store
+        description: Nome da loja.

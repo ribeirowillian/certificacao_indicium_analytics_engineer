@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: stg_snowflake__salespersons
+    description: Esta tabela contém informações sobre os vendedores. 
+      A tabela `salesperson` armazena detalhes sobre os vendedores, incluindo suas entidades de negócios e territórios associados.
+    columns:
+      - name: pk_businessentityid
+        description: ID único da entidade de negócios (vendedor). 
+          Esta coluna é uma chave primária que identifica exclusivamente um vendedor.
+      - name: territoryid
+        description: ID do território associado ao vendedor.

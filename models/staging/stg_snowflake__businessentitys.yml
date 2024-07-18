@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: stg_snowflake__businessentitys
+    description: Esta tabela contém os dados de entidades de negócios.
+      A tabela `businessentity` é uma tabela central no esquema de banco de dados, usada para representar uma entidade de negócios genérica que pode ser uma pessoa, loja, vendedor, etc.
+    columns:
+      - name: pk_businessentityid
+        description: ID único da entidade de negócios. 
+          Esta coluna é uma chave primária que identifica exclusivamente uma entidade de negócios.

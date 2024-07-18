@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: stg_snowflake__creditcards
+    description: Esta tabela contém dados sobre cartões de crédito. 
+      A tabela `creditcard` armazena informações sobre diferentes cartões de crédito usados pelos clientes.
+    columns:
+      - name: pk_creditcardid
+        description: ID único do cartão de crédito. 
+          Esta coluna é uma chave primária que identifica exclusivamente um cartão de crédito.
+      - name: cardtype
+        description: Tipo do cartão de crédito (por exemplo, Visa, MasterCard).
+

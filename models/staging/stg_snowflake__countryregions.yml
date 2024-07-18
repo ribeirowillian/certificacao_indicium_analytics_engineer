@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: stg_snowflake__countryregions
+    description: Esta tabela contém dados sobre regiões e países. 
+      A tabela `countryregion` armazena os códigos e nomes de várias regiões ou países, que podem ser usados para representar localizações geográficas.
+    columns:
+      - name: pk_countryregioncode
+        description: Código único da região ou país. 
+          Esta coluna é uma chave primária que identifica exclusivamente uma região ou país.
+      - name: name_country
+        description: Nome do país correspondente ao código.

@@ -1,0 +1,34 @@
+version: 2
+
+models:
+  - name: stg_snowflake__salesorderheaders
+    description: Esta tabela contém os cabeçalhos de ordens de venda. 
+      A tabela `salesorderheader` armazena informações gerais sobre cada ordem de venda no banco, incluindo cliente, endereço de envio, vendedor, território, cartão de crédito, data do pedido, status e valores monetários.
+    columns:
+      - name: pk_salesorderid
+        description: ID único da ordem de venda. 
+          Esta coluna é uma chave primária que identifica exclusivamente uma ordem de venda.
+      - name: addressid
+        description: ID do endereço de envio associado à ordem de venda.
+      - name: customerid
+        description: ID do cliente associado à ordem de venda.
+      - name: salespersonid
+        description: ID do vendedor associado à ordem de venda.
+      - name: territoryid
+        description: ID do território associado à ordem de venda.
+      - name: creditcardid
+        description: ID do cartão de crédito usado na ordem de venda.
+      - name: oh_orderdate
+        description: Data da ordem de venda.
+      - name: oh_status
+        description: Status da ordem de venda. Representado por um número inteiro.
+      - name: oh_status_description
+        description: Descrição do status da ordem de venda. Traduz os valores numéricos do status para descrições legíveis (por exemplo, 'Em progresso', 'Aprovado').
+      - name: oh_subtotal
+        description: Subtotal da ordem de venda.
+      - name: oh_freight
+        description: Valor do frete da ordem de venda.
+      - name: oh_taxamt
+        description: Valor do imposto da ordem de venda.
+      - name: oh_totaldue
+        description: Valor total devido da ordem de venda.

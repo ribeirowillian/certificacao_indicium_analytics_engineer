@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: stg_snowflake__address
+    description: Esta tabela contém os dados de endereço, incluindo ID, estado, endereço, cidade e código postal.
+    columns:
+      - name: addressid
+        description: ID do endereço.
+      - name: stateprovinceid
+        description: ID da província ou estado.
+      - name: address
+        description: Linha de endereço 1.
+      - name: city
+        description: Nome da cidade.
+      - name: postalcode
+        description: Código postal.
+

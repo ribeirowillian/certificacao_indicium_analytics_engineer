@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: stg_snowflake__productcategorys
+    description: Esta tabela contém categorias de produtos de alto nível. 
+      A tabela `productcategory` armazena informações sobre as categorias de produtos, que são usadas para agrupar produtos em grandes categorias.
+    columns:
+      - name: pk_productcategoryid
+        description: ID único da categoria de produto. 
+          Esta coluna é uma chave primária que identifica exclusivamente uma categoria de produto.
+      - name: name_category
+        description: Nome da categoria de produto.
