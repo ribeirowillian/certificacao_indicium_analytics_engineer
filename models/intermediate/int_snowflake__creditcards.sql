@@ -1,26 +1,21 @@
 with
     creditcards as (
-        select
-            PK_CREDITCARDID,
-            CARDTYPE
-        from {{ ref('stg_snowflake__creditcards') }}
+        select 
+            pk_creditcardid
+            , cardtype 
+        from {{ ref("stg_snowflake__creditcards") }}
     ),
     personcreditcards as (
-        select
-            PK_BUSINESSENTITYID,
-            FK_CREDITCARDID
-        from {{ ref('stg_snowflake__personcreditcards') }}
+        select 
+            pk_businessentityid
+            , creditcardid as fk_creditcardid
+        from {{ ref("stg_snowflake__personcreditcards") }}
     )
 
 select
-    personcreditcards.pk_businessentityid,
-    creditcards.pk_creditcardid,
-    personcreditcards.fk_creditcardid,
-    creditcards.CARDTYPE
-from
-    personcreditcards
-left join
-    creditcards
-on
-    personcreditcards.fk_creditcardid = creditcards.pk_creditcardid
-
+    personcreditcards.pk_businessentityid
+    , creditcards.pk_creditcardid
+    , personcreditcards.fk_creditcardid
+    , creditcards.cardtype
+from personcreditcards
+left join creditcards on personcreditcards.fk_creditcardid = creditcards.pk_creditcardid

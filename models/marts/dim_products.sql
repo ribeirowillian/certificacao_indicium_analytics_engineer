@@ -1,10 +1,10 @@
-SELECT
-    PK_PRODUCT,
-    FK_PRODUCTSUBCATEGORYID,
-    FK_PRODUCTMODELID,
-    NAME_PRODUCT,
-    COLOR,
-    SIZES,
-    NAME_SUBCATEGORY,
-    NAME_CATEGORY
-FROM {{ ref('int_snowflake__products') }}
+select
+    pk_productid
+    , fk_productsubcategoryid
+    , fk_productmodelid
+    , name_product
+    , color
+    , sizes
+    , name_subcategory
+    , name_category
+from {{ ref("int_snowflake__products") }}
