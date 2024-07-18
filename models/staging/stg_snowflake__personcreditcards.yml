@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: stg_snowflake__personcreditcards
+    description: Esta tabela contém dados sobre a associação entre pessoas e cartões de crédito. 
+      A tabela `personcreditcard` armazena informações sobre quais cartões de crédito estão associados a quais entidades de negócios (pessoas).
+    columns:
+      - name: pk_businessentityid
+        description: ID único da entidade de negócios (pessoa). 
+          Esta coluna é uma chave primária que identifica exclusivamente uma entidade de negócios.
+      - name: creditcardid
+        description: ID do cartão de crédito associado à entidade de negócios (pessoa).

@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: stg_snowflake__salesreasons
+    description: Esta tabela contém informações sobre as razões de vendas. 
+      A tabela `salesreason` armazena detalhes sobre as diferentes razões pelas quais as vendas são realizadas.
+    columns:
+      - name: pk_salesreasonid
+        description: ID único da razão de venda. 
+          Esta coluna é uma chave primária que identifica exclusivamente uma razão de venda.
+      - name: reason_for_sale
+        description: Descrição da razão pela qual a venda foi realizada.

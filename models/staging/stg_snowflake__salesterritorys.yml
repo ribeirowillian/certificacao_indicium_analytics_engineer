@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: stg_snowflake__salesterritorys
+    description: Esta tabela contém informações sobre os territórios de vendas. 
+      A tabela `salesterritory` armazena detalhes sobre os territórios onde as vendas ocorrem, incluindo nome, código de região, grupo e dados de vendas.
+    columns:
+      - name: pk_territoryid
+        description: ID único do território de vendas. 
+          Esta coluna é uma chave primária que identifica exclusivamente um território de vendas.
+      - name: st_name
+        description: Nome do território de vendas.
+      - name: st_countryregioncode
+        description: Código da região ou país associado ao território de vendas.
+      - name: st_group
+        description: Grupo ao qual o território de vendas pertence.
+      - name: st_salesytd
+        description: Vendas acumuladas no território desde o início do ano até a data atual.
+      - name: st_saleslastyear
+        description: Vendas do ano anterior para o território de vendas.

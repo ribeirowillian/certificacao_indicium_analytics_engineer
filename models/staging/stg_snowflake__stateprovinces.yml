@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: stg_snowflake__stateprovinces
+    description: Esta tabela contém informações sobre estados e províncias. 
+      A tabela `stateprovince` armazena detalhes sobre as divisões administrativas regionais, incluindo IDs de território e códigos de região e país.
+    columns:
+      - name: pk_stateprovinceid
+        description: ID único do estado ou província. 
+          Esta coluna é uma chave primária que identifica exclusivamente um estado ou província.
+      - name: territoryid
+        description: ID do território associado ao estado ou província.
+      - name: sp_stateprovincecode
+        description: Código do estado ou província.
+      - name: sp_countryregioncode
+        description: Código da região ou país associado ao estado ou província.
+      - name: sp_name_stateprovince
+        description: Nome do estado ou província.

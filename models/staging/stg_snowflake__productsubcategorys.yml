@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: stg_snowflake__productsubcategorys
+    description: Esta tabela contém informações sobre subcategorias de produtos. 
+      A tabela `productsubcategory` armazena detalhes sobre subcategorias de produtos, que são usadas para agrupar produtos dentro de categorias maiores.
+    columns:
+      - name: pk_productsubcategoryid
+        description: ID único da subcategoria de produto. 
+          Esta coluna é uma chave primária que identifica exclusivamente uma subcategoria de produto.
+      - name: productcategoryid
+        description: ID da categoria de produto. 
+          Refere-se à categoria à qual esta subcategoria pertence.
+      - name: name_subcategory
+        description: Nome da subcategoria de produto.

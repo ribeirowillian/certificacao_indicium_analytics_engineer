@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: stg_snowflake__persons
+    description: Esta tabela contém dados sobre pessoas. 
+      A tabela `person` armazena informações sobre indivíduos que são entidades de negócios, incluindo seus nomes completos e email.
+    columns:
+      - name: pk_businessentityid
+        description: ID único da entidade de negócios (pessoa). 
+          Esta coluna é uma chave primária que identifica exclusivamente uma entidade de negócios.
+      - name: persontype
+        description: Tipo da pessoa (por exemplo, empregado, cliente, etc.).
+      - name: person_fullname
+        description: Nome completo da pessoa, concatenado a partir do primeiro nome (firstname), nome do meio (middlename) e sobrenome (lastname).
+      - name: emailpromotion
+        description: Indica se a pessoa optou por receber promoções por email (0 = Não deseja receber, 1 = Deseja receber da AdventureWorks, 2 = Deseja receber da AdventureWorks e Parceiros).

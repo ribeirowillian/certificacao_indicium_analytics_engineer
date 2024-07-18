@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: stg_snowflake__customers
+    description: Esta tabela contém dados sobre clientes. 
+      A tabela `customer` armazena informações sobre os clientes, incluindo IDs de cliente, território e pessoa.
+    columns:
+      - name: pk_customerid
+        description: ID único do cliente. 
+          Esta coluna é uma chave primária que identifica exclusivamente um cliente.
+      - name: territoryid
+        description: ID do território associado ao cliente.
+      - name: personid
+        description: ID da pessoa associada ao cliente.
