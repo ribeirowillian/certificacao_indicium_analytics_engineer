@@ -2,8 +2,8 @@ with
     salesorderheaders as (
         select
             pk_salesorderid,
-            fk_customerid,
-            fk_salespersonid
+            customerid as fk_customerid,
+            salespersonid as fk_salespersonid
         from {{ ref("stg_snowflake__salesorderheaders") }}
     ),
     salesreasons as (

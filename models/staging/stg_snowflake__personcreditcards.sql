@@ -2,7 +2,7 @@ with
     source_personcreditcards as (
         select
             cast(businessentityid as int) as pk_businessentityid,
-            cast(creditcardid as int) as fk_creditcardid
+            cast(creditcardid as int) as creditcardid
 
         from {{ source("snowflake", "personcreditcard") }}
 
