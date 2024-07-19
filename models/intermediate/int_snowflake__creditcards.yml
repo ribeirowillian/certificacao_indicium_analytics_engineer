@@ -9,10 +9,12 @@ models:
         tests:
           - unique
           - not_null
-      - name: fk_creditcardid
-        description: Chave do id do cartão de crédito do cliente.
+      - name: pk_creditcardid
+        description: Chave primária do id do cartão de crédito do cliente.
         tests:
           - unique
           - not_null
+      - name: fk_creditcardid
+        description: Chave estrangeira do id do cartão de crédito do cliente
       - name: cardtype
         description: Descrição do tipo de cartão.
