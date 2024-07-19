@@ -3,22 +3,19 @@ version: 2
 models:
   - name: dim_address
     description: Tabela dimensão dos endereços dos clientes da Adventure Works.
-    columns: 
-      - name: PK_ADDRESSID
-        description: Chave primária da dimensão address
+    columns:
+      - name: pk_addressid
+        description: Chave primária da dimensão address.
         tests:
           - unique
           - not_null
-      - name: ADDRESS
-        description: Nome da rua
-      - name: CITY
-        description: Nome da cidade
-      - name: POSTALCODE
-        description: Código postal
-      - name: SP_NAME_STATEPROVINCE
-        description: Nome do estado/provincia
-      - name: NAME_COUNTRY
-        description: Nome do país
-
-        
-        
+      - name: address
+        description: Nome da rua.
+      - name: city
+        description: Nome da cidade.
+      - name: postalcode
+        description: Código postal.
+      - name: sp_name_stateprovince
+        description: Nome do estado/provincia.
+      - name: name_country
+        description: Nome do país.

@@ -4,42 +4,46 @@ models:
   - name: dim_ordered_items
     description: Dimensão que agrega outras dimensões para detalhar melhor as vendas.
     columns:
-      - name: PK_SALESORDERDETAILID
+      - name: pk_salesorderdetailid
         description: Chave primária que identifica o detalhe do pedido.
         tests:
             - unique
             - not_null
+      - name: fk_addressid
+        description: Chave estrangeira que referencia o endereço.
       - name: pk_salesorderid
         description: Chave primária da tabela salesorderheaders.
-      - name: FK_CUSTOMERID
+      - name: fk_customerid
         description: Chave estrangeira que referencia o cliente.
-      - name: FK_SALESPERSONID
+      - name: fk_salespersonid
         description: Chave estrangeira que referencia o vendedor.
-      - name: FK_TERRITORYID
+      - name: fk_territoryid
         description: Chave estrangeira que referencia o território.
-      - name: FK_CREDITCARDID
+      - name: fk_creditcardid
         description: Chave estrangeira que referencia o cartão de crédito.
-      - name: OH_ORDERDATE
+      - name: creditcard_display
+        description: Coluna que insere a descrição "outra forma de pagamento" para vendas sem cartão.
+      - name: oh_orderdate
         description: Data do pedido.
-      - name: OH_STATUS
+      - name: oh_status
         description: Status do pedido.
-      - name: FK_PRODUCTID
+      - name: fk_productid
         description: Chave estrangeira que referencia o produto.
-      - name: FK_SPECIALOFFERID
+      - name: fk_specialofferid
         description: Chave estrangeira que referencia a oferta especial.
-      - name: OD_ORDERQTY
+      - name: od_orderqty
         description: Quantidade de itens no pedido.
-      - name: OD_UNITPRICE
+      - name: od_unitprice
         description: Preço unitário do item.
-      - name: OD_UNITPRICEDISCOUNT
+      - name: od_unitpricediscount
         description: Desconto aplicado no preço unitário do item.
-      - name: FREIGHT_PER_ITEM
+      - name: freight_per_item
         description: Custo de frete por item.
-      - name: TAX_PER_ITEM
+      - name: tax_per_item
         description: Imposto aplicado por item.
-      - name: ITEM_TOTAL
+      - name: item_total
         description: Total do item considerando a quantidade e o preço unitário.
-      - name: DISCOUNTED_ITEM_TOTAL
+      - name: discounted_item_total
         description: Total do item considerando os descontos aplicados.
-      - name: OH_TOTALDUE
+      - name: oh_totaldue
         description: Total devido pelo pedido.

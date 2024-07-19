@@ -4,22 +4,22 @@ models:
   - name: dim_clients
     description: Tabela dimensão dos endereços dos clientes da Adventure Works.
     columns: 
-      - name: PK_CLIENTE
-        description: Chave primária da dimensão cliente
+      - name: pk_cliente
+        description: Chave primária da dimensão cliente.
         tests:
           - unique
           - not_null
-      - name: CD_CLIENTE
-        description: Chave do cliente
-      - name: CD_LOJA
-        description: Chave do cliente loja
-      - name: CD_PESSOA
-        description: Chave do cliente pessoa 
-      - name: CD_VENDEDOR_ATRIBUIDO
-        description: Código do vendendor atribuido
-      - name: TP_CLIENTE
-        description: Tipo de cliente
-      - name: NM_VENDEDOR_ATRIBUIDO
-        description: Nome do vendedor atribuido
-      - name: NM_CLIENTE
-        description: Nome do cliente
+      - name: cd_cliente
+        description: Chave do cliente.
+      - name: cd_loja
+        description: Chave do cliente loja.
+      - name: cd_pessoa
+        description: Chave do cliente pessoa .
+      - name: cd_vendedor_atribuido
+        description: Código do vendendor atribuido.
+      - name: tp_cliente
+        description: Tipo de cliente.
+      - name: nm_vendedor_atribuido
+        description: Nome do vendedor atribuido.
+      - name: nm_cliente
+        description: Nome do cliente.
