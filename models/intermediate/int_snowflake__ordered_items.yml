@@ -27,6 +27,8 @@ models:
         description: Data do pedido.
       - name: oh_status
         description: Status do pedido.
+      - name: oh_status_description
+        description: Status do pedido em formato descritivo.
       - name: fk_productid
         description: Chave estrangeira que referencia o produto.
       - name: fk_specialofferid

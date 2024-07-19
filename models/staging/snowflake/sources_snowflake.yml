@@ -4,6 +4,7 @@ sources:
   - name: snowflake
     database: fea24_4
     schema: raw_adventure_works
+    description: Camada source onde são listadas todas as tabelas utilizadas no projeto, provenientes do Snowflake.
     tables:
       - name: product
         description: Tabela que armazena informações detalhadas sobre produtos.
