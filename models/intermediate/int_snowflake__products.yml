@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: int_snowflake__products
+    description: Tabela intermediária onde é feita a junção das stagins stg_snowflake__products, stg_snowflake__productsubcategorys e stg_snowflake__productcategorys.
+    columns:
+      - name: pk_productid
+        description: Chave primária que identifica o produto.
+        tests:
+            - unique
+            - not_null
+      - name: fk_productsubcategoryid
+        description: Chave estrangeira que referencia a subcategoria do produto.
+      - name: fk_productmodelid
+        description: Chave estrangeira que referencia o modelo do produto.
+      - name: name_product
+        description: Nome do produto.
+      - name: color
+        description: Cor do produto.
+      - name: sizes
+        description: Tamanhos disponíveis para o produto.
+      - name: name_subcategory
+        description: Nome da subcategoria do produto.
+      - name: name_category
+        description: Nome da categoria do produto.

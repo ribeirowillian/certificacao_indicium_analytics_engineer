@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: int_snowflake__address
+    description: Tabela intermediária que faz junção das stagings stg_snowflake__address, stg_snowflake__stateprovinces e stg_snowflake__countryregions
+    columns:
+      - name: pk_addressid
+        description: Chave primária da dimensão address.
+        tests:
+          - unique
+          - not_null
+      - name: address
+        description: Nome da rua.
+      - name: city
+        description: Nome da cidade.
+      - name: postalcode
+        description: Código postal.
+      - name: sp_name_stateprovince
+        description: Nome do estado/provincia.
+      - name: name_country
+        description: Nome do país.

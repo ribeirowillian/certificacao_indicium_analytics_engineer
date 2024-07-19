@@ -1,8 +1,8 @@
 version: 2
 
 models:
-  - name: fct_sales
-    description: Dimensão que agrega outras dimensões para detalhar melhor as vendas.
+  - name: int_snowflake__ordered_items
+    description: Tabela intermediária onde é feita a junção das stagins stg_snowflake__salesorderheaders e stg_snowflake__salesorderdetails.
     columns:
       - name: pk_salesorderdetailid
         description: Chave primária que identifica o detalhe do pedido.
