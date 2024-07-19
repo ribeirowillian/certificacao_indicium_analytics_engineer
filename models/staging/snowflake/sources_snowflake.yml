@@ -4,382 +4,435 @@ sources:
   - name: snowflake
     database: fea24_4
     schema: raw_adventure_works
-    description: Camada source onde são listadas todas as tabelas utilizadas no projeto, provenientes do Snowflake.
+    description: Camada source onde são listadas todas as tabelas utilizadas no projeto, provenientes do snowflake.
     tables:
       - name: product
-        description: Tabela que armazena informações detalhadas sobre produtos.
+        description: Produtos vendidos ou utilizados na fabricação de produtos vendidos.
         columns:
           - name: productid
-            description: ID único do produto. É a chave primária desta tabela.
+            description: id único do produto. é a chave primária desta tabela.
             tests:
               - unique
               - not_null
           - name: name
             description: Nome do produto.
           - name: productnumber
-            description: Número único de identificação do produto.
+            description: Número de identificação único do produto.
+          - name: makeflag
+            description: 0 = Produto é comprado, 1 = Produto é fabricado internamente.
+          - name: finishedgoodsflag
+            description: 0 = Produto não é vendável, 1 = Produto é vendável.
           - name: color
             description: Cor do produto.
-          - name: safety_stock_level
-            description: Quantidade mínima de estoque do produto.
-          - name: reorder_point
-            description: Nível de estoque que aciona um pedido de compra ou ordem de trabalho.
+          - name: safetystocklevel
+            description: Quantidade mínima de estoque.
+          - name: reorderpoint
+            description: Nível de estoque que aciona um pedido de compra ou ordem de produção.
           - name: standardcost
             description: Custo padrão do produto.
           - name: listprice
-            description: Preço de venda do produto.
+            description: Preço de venda.
           - name: size
             description: Tamanho do produto.
+          - name: sizeunitmeasurecode
+            description: Unidade de medida para a coluna Tamanho.
+          - name: weightunitmeasurecode
+            description: Unidade de medida para a coluna Peso.
           - name: weight
             description: Peso do produto.
-          - name: productcategoryid
-            description: ID da categoria do produto.
+          - name: daystomanufacture
+            description: Número de dias necessários para fabricar o produto.
+          - name: productline
+            description: R = Estrada, M = Montanha, T = Turismo, S = Padrão.
+          - name: class
+            description: H = Alta, M = Média, L = Baixa.
+          - name: style
+            description: W = Feminino, M = Masculino, U = Unissex.
           - name: productsubcategoryid
-            description: ID da subcategoria do produto.
+            description: Produto é membro desta subcategoria de produto. Chave estrangeira para ProductSubCategory.ProductSubCategoryID.
           - name: productmodelid
-            description: ID do modelo do produto.
+            description: Produto é membro deste modelo de produto. Chave estrangeira para ProductModel.ProductModelID.
           - name: sellstartdate
-            description: Data em que o produto começou a ser vendido.
+            description: Data em que o produto foi disponibilizado para venda.
           - name: sellenddate
-            description: Data em que o produto deixou de ser vendido.
+            description: Data em que o produto não estava mais disponível para venda.
           - name: discontinueddate
             description: Data em que o produto foi descontinuado.
           - name: rowguid
-            description: GUID exclusivo da linha. Utilizado para integração e sincronização de dados.
+            description: Número ROWGUIDCOL identificando exclusivamente o registro. Usado para dar suporte a uma amostra de replicação de mesclagem.
           - name: modifieddate
-            description: Data e hora da última modificação da linha.
+            description: Data e hora em que o registro foi atualizado pela última vez.
+
 
       - name: productcategory
         description: Tabela que armazena informações sobre as categorias de produtos.
         columns:
-          - name: PRODUCTCATEGORYID
-            description: ID único da categoria de produto. É a chave primária desta tabela.
+          - name: productcategoryid
+            description: id único da categoria de produto. é a chave primária desta tabela.
             tests:
               - unique
               - not_null
           - name: name
-            description: Nome da categoria de produto.
+            description: nome da categoria de produto.
           - name: rowguid
-            description: GUID exclusivo da linha. Utilizado para integração e sincronização de dados.
+            description: guid exclusivo da linha. utilizado para integração e sincronização de dados.
           - name: modifieddate
-            description: Data e hora da última modificação da linha.
+            description: data e hora da última modificação da linha.
 
       - name: productsubcategory
         description: Tabela que armazena informações sobre as subcategorias de produtos.
         columns:
-          - name: PRODUCTSUBCATEGORYID
-            description: ID único da subcategoria de produto. É a chave primária desta tabela.
+          - name: productsubcategoryid
+            description: id único da subcategoria de produto. é a chave primária desta tabela.
             tests:
               - unique
               - not_null
           - name: productcategoryid
-            description: ID da categoria de produto.
+            description: id da categoria de produto.
           - name: name
-            description: Nome da subcategoria de produto.
+            description: nome da subcategoria de produto.
           - name: rowguid
-            description: GUID exclusivo da linha. Utilizado para integração e sincronização de dados.
+            description: guid exclusivo da linha. utilizado para integração e sincronização de dados.
           - name: modifieddate
-            description: Data e hora da última modificação da linha.
+            description: data e hora da última modificação da linha.
 
       - name: creditcard
         description: Tabela que armazena informações sobre cartões de crédito usados pelos clientes.
         columns:
-          - name: CREDITCARDID
-            description: ID único do cartão de crédito. É a chave primária desta tabela.
+          - name: creditcardid
+            description: id único do cartão de crédito. é a chave primária desta tabela.
             tests:
               - unique
               - not_null
           - name: cardtype
-            description: Tipo do cartão de crédito (por exemplo, Visa, MasterCard).
+            description: tipo do cartão de crédito (por exemplo, visa, mastercard).
           - name: cardnumber
-            description: Número do cartão de crédito.
+            description: número do cartão de crédito.
           - name: expmonth
-            description: Mês de expiração do cartão de crédito.
+            description: mês de expiração do cartão de crédito.
           - name: expyear
-            description: Ano de expiração do cartão de crédito.
+            description: ano de expiração do cartão de crédito.
           - name: modifieddate
-            description: Data e hora da última modificação da linha.
+            description: data e hora da última modificação da linha.
 
       - name: personcreditcard
         description: Tabela que armazena a relação entre pessoas e cartões de crédito.
         columns:
-          - name: BUSINESSENTITYID
-            description: ID único da entidade de negócios (pessoa).
+          - name: businessentityid
+            description: id único da entidade de negócios (pessoa).
             tests:
               - unique
               - not_null
-          - name: CREDITCARDID
-            description: ID do cartão de crédito associado à entidade de negócios (pessoa).
+          - name: creditcardid
+            description: id do cartão de crédito associado à entidade de negócios (pessoa).
           - name: modifieddate
-            description: Data e hora da última modificação da linha.
+            description: data e hora da última modificação da linha.
 
       - name: person
         description: Tabela que armazena informações sobre pessoas.
         columns:
-          - name: BUSINESSENTITYID
-            description: ID único da entidade de negócios (pessoa).
+          - name: businessentityid
+            description: id único da entidade de negócios (pessoa).
             tests:
               - unique
               - not_null
           - name: persontype
-            description: Tipo da pessoa (por exemplo, empregado, cliente, etc.).
+            description: tipo da pessoa (por exemplo, empregado, cliente, etc.).
+          - name: namestyle
+            description: estilo de nome armazenado, ocidental(1) ou oriental(0).
           - name: firstname
-            description: Primeiro nome da pessoa.
+            description: primeiro nome da pessoa.
           - name: middlename
-            description: Nome do meio da pessoa.
+            description: nome do meio da pessoa.
           - name: lastname
-            description: Sobrenome da pessoa.
+            description: sobrenome da pessoa.
           - name: emailpromotion
-            description: Indica se a pessoa optou por receber promoções por email (0 = Não deseja receber, 1 = Deseja receber da AdventureWorks, 2 = Deseja receber da AdventureWorks e Parceiros).
+            description: indica se a pessoa optou por receber promoções por email (0 = não deseja receber, 1 = deseja receber da adventureworks, 2 = deseja receber da adventureworks e parceiros).
           - name: title
-            description: Título da pessoa (por exemplo, Sr., Sra., Dr.).
+            description: título da pessoa (por exemplo, sr., sra., dr.).
           - name: suffix
-            description: Sufixo do nome da pessoa (por exemplo, Jr., III).
+            description: sufixo do nome da pessoa (por exemplo, jr., iii).
           - name: additionalcontactinfo
-            description: Informações de contato adicionais da pessoa.
-          - name: demography
-            description: Informações demográficas da pessoa.
+            description: informações de contato adicionais da pessoa.
+          - name: demographics
+            description: informações demográficas da pessoa.
           - name: rowguid
-            description: GUID exclusivo da linha. Utilizado para integração e sincronização de dados.
+            description: guid exclusivo da linha. utilizado para integração e sincronização de dados.
           - name: modifieddate
-            description: Data e hora da última modificação da linha.
+            description: data e hora da última modificação da linha.
 
       - name: salesorderdetail
         description: Tabela que armazena informações detalhadas sobre cada item de ordem de venda.
         columns:
-          - name: SALESORDERDETAILID
-            description: ID único do detalhe da ordem de venda. É a chave primária desta tabela.
+          - name: salesorderdetailid
+            description: id único do detalhe da ordem de venda. é a chave primária desta tabela.
             tests:
               - unique
               - not_null
-          - name: SALESORDERID
-            description: ID da ordem de venda à qual o detalhe pertence.
-          - name: CARRIERTRACKINGNUMBER
-            description: Número de rastreamento do transportador para o detalhe da ordem de venda.
-          - name: ORDERQTY
-            description: Quantidade de produto ordenada.
-          - name: PRODUCTID
-            description: ID do produto vendido.
-          - name: SPECIALOFFERID
-            description: ID da oferta especial aplicada ao item da ordem de venda.
-          - name: UNITPRICE
-            description: Preço unitário do produto.
-          - name: UNITPRICEDISCOUNT
-            description: Desconto aplicado ao preço unitário do produto.
-          - name: LINETOTAL
-            description: Valor total da linha de detalhe da ordem de venda.
+          - name: salesorderid
+            description: id da ordem de venda à qual o detalhe pertence.
+          - name: carriertrackingnumber
+            description: número de rastreamento do transportador para o detalhe da ordem de venda.
+          - name: orderqty
+            description: quantidade de produto ordenada.
+          - name: productid
+            description: id do produto vendido.
+          - name: specialofferid
+            description: id da oferta especial aplicada ao item da ordem de venda.
+          - name: unitprice
+            description: preço unitário do produto.
+          - name: unitpricediscount
+            description: desconto aplicado ao preço unitário do produto.
           - name: rowguid
-            description: GUID exclusivo da linha. Utilizado para integração e sincronização de dados.
+            description: guid exclusivo da linha. utilizado para integração e sincronização de dados.
           - name: modifieddate
-            description: Data e hora da última modificação da linha.
+            description: data e hora da última modificação da linha.
 
       - name: salesorderheader
         description: Tabela que armazena informações gerais sobre cada ordem de venda.
         columns:
-          - name: SALESORDERID
-            description: ID único da ordem de venda. É a chave primária desta tabela.
+          - name: salesorderid
+            description: id único da ordem de venda. é a chave primária desta tabela.
             tests:
               - unique
               - not_null
-          - name: REVISIONNUMBER
-            description: Número de revisão da ordem de venda.
-          - name: ORDERDATE
-            description: Data da ordem de venda.
-          - name: DUEDATE
-            description: Data de vencimento da ordem de venda.
-          - name: SHIPDATE
-            description: Data de envio da ordem de venda.
-          - name: STATUS
-            description: Status da ordem de venda. Representado por um número inteiro.
-          - name: ONLINEORDERFLAG
-            description: Indica se a ordem de venda foi realizada online (0 = Não, 1 = Sim).
-          - name: SALESTAX
-            description: Valor do imposto sobre vendas.
-          - name: FREIGHT
-            description: Valor do frete da ordem de venda.
-          - name: TOTALDUE
-            description: Valor total devido da ordem de venda.
-          - name: COMMENT
-            description: Comentário associado à ordem de venda.
+          - name: revisionnumber
+            description: Número incremental para rastrear alterações no pedido de venda ao longo do tempo.
+          - name: orderdate
+            description: Data em que o pedido de venda foi criado.
+          - name: duedate
+            description: Data em que o pedido deve ser entregue ao cliente.
+          - name: shipdate
+            description: Data em que o pedido foi enviado ao cliente.
+          - name: status
+            description: Status atual do pedido. 1 = Em processamento; 2 = Aprovado; 3 = Em espera; 4 = Rejeitado; 5 = Enviado; 6 = Cancelado.
+          - name: onlineorderflag
+            description: 0 = Pedido feito por um vendedor; 1 = Pedido feito online pelo cliente.
+          - name: purchaseordernumber
+            description: Número de referência do pedido de compra do cliente.
+          - name: accountnumber
+            description: Número de referência contábil.
+          - name: customerid
+            description: Número de identificação do cliente. Chave estrangeira para Customer.BusinessEntityID.
+          - name: salespersonid
+            description: Vendedor que criou o pedido de venda. Chave estrangeira para SalesPerson.BusinessEntityID.
+          - name: territoryid
+            description: Território em que a venda foi realizada. Chave estrangeira para SalesTerritory.SalesTerritoryID.
+          - name: billtoaddressid
+            description: Endereço de cobrança do cliente. Chave estrangeira para Address.AddressID.
+          - name: shiptoaddressid
+            description: Endereço de entrega do cliente. Chave estrangeira para Address.AddressID.
+          - name: shipmethodid
+            description: Método de envio. Chave estrangeira para ShipMethod.ShipMethodID.
+          - name: creditcardid
+            description: Número de identificação do cartão de crédito. Chave estrangeira para CreditCard.CreditCardID.
+          - name: creditcardapprovalcode
+            description: Código de aprovação fornecido pela companhia de cartão de crédito.
+          - name: currencyrateid
+            description: Taxa de câmbio utilizada. Chave estrangeira para CurrencyRate.CurrencyRateID.
+          - name: subtotal
+            description: Subtotal da venda. Calculado como SUM(SalesOrderDetail.LineTotal) para o SalesOrderID apropriado.
+          - name: taxamt
+            description: Valor do imposto.
+          - name: freight
+            description: Custo de envio.
+          - name: totaldue
+            description: Total devido pelo cliente. Calculado como Subtotal + TaxAmt + Freight.
+          - name: comment
+            description: Comentários do representante de vendas.
           - name: rowguid
-            description: GUID exclusivo da linha. Utilizado para integração e sincronização de dados.
+            description: Número ROWGUIDCOL identificando exclusivamente o registro. Usado para dar suporte a uma amostra de replicação de mesclagem.
           - name: modifieddate
-            description: Data e hora da última modificação da linha.
+            description: Data e hora em que o registro foi atualizado pela última vez.
 
       - name: salesorderheadersalesreason
         description: Tabela que armazena a relação entre ordens de venda e as razões de venda associadas.
+        columns:
+        - name: salesorderid
+          description: Chave primária e estrangeira para SalesOrderHeader.SalesOrderID.
+        - name: salesreasonid
+          description: Chave primária e estrangeira para SalesReason.SalesReasonID.
+        - name: modifieddate
+          description: Data e hora em que o registro foi atualizado pela última vez.
+
 
       - name: salesreason
         description: Tabela que armazena informações sobre as razões de vendas.
         columns:
-          - name: SALESREASONID
-            description: ID único da razão de venda. É a chave primária desta tabela.
+          - name: salesreasonid
+            description: id único da razão de venda. é a chave primária desta tabela.
             tests:
               - unique
               - not_null
-          - name: NAME
-            description: Descrição da razão pela qual a venda foi realizada.
-          - name: rowguid
-            description: GUID exclusivo da linha. Utilizado para integração e sincronização de dados.
+          - name: name
+            description: descrição da razão pela qual a venda foi realizada.
+          - name: reasontype
+            description: Categoria da razão da venda.
           - name: modifieddate
-            description: Data e hora da última modificação da linha.
+            description: data e hora da última modificação da linha.
 
       - name: address
         description: Tabela que armazena informações sobre endereços.
         columns:
-          - name: ADDRESSID
-            description: ID único do endereço. É a chave primária desta tabela.
+          - name: addressid
+            description: id único do endereço. é a chave primária desta tabela.
             tests:
               - unique
               - not_null
-          - name: ADDRESSLINE1
-            description: Primeira linha do endereço.
-          - name: ADDRESSLINE2
-            description: Segunda linha do endereço.
-          - name: CITY
-            description: Cidade do endereço.
-          - name: STATEPROVINCEID
-            description: ID do estado ou província associado ao endereço.
-          - name: POSTALCODE
-            description: Código postal do endereço.
-          - name: SPATIALLOCATION
-            description: Localização espacial do endereço.
+          - name: addressline1
+            description: primeira linha do endereço.
+          - name: addressline2
+            description: segunda linha do endereço.
+          - name: city
+            description: cidade do endereço.
+          - name: stateprovinceid
+            description: id do estado ou província associado ao endereço.
+          - name: postalcode
+            description: código postal do endereço.
+          - name: spatiallocation
+            description: localização espacial do endereço.
           - name: rowguid
-            description: GUID exclusivo da linha. Utilizado para integração e sincronização de dados.
+            description: guid exclusivo da linha. utilizado para integração e sincronização de dados.
           - name: modifieddate
-            description: Data e hora da última modificação da linha.
+            description: data e hora da última modificação da linha.
 
       - name: stateprovince
         description: Tabela que armazena informações sobre estados e províncias.
         columns:
-          - name: STATEPROVINCEID
-            description: ID único do estado ou província. É a chave primária desta tabela.
+          - name: stateprovinceid
+            description: id único do estado ou província. é a chave primária desta tabela.
             tests:
               - unique
               - not_null
-          - name: STATEPROVINCECODE
-            description: Código do estado ou província.
-          - name: COUNTRYREGIONCODE
-            description: Código da região ou país associado ao estado ou província.
-          - name: NAME
-            description: Nome do estado ou província.
+          - name: stateprovincecode
+            description: código do estado ou província.
+          - name: countryregioncode
+            description: Código ISO padrão do país ou região. Chave estrangeira para CountryRegion.CountryRegionCode.
+          - name: isonlystateprovinceflag
+            description: 0 = StateProvinceCode disponível. 1 = StateProvinceCode indisponível, usando CountryRegionCode.
+          - name: name
+            description: Descrição do estado ou província.
+          - name: territoryid
+            description: ID do território onde o estado ou província está localizado. Chave estrangeira para SalesTerritory.SalesTerritoryID.
           - name: rowguid
-            description: GUID exclusivo da linha. Utilizado para integração e sincronização de dados.
+            description: Número ROWGUIDCOL identificando exclusivamente o registro. Usado para dar suporte a uma amostra de replicação de mesclagem.
           - name: modifieddate
-            description: Data e hora da última modificação da linha.
+            description: Data e hora em que o registro foi atualizado pela última vez.
 
       - name: countryregion
         description: Tabela que armazena informações sobre regiões e países.
         columns:
-          - name: COUNTRYREGIONCODE
-            description: Código único da região ou país. É a chave primária desta tabela.
+          - name: countryregioncode
+            description: código único da região ou país. é a chave primária desta tabela.
             tests:
               - unique
               - not_null
-          - name: NAME
-            description: Nome da região ou país.
-          - name: rowguid
-            description: GUID exclusivo da linha. Utilizado para integração e sincronização de dados.
+          - name: name
+            description: nome da região ou país.
           - name: modifieddate
-            description: Data e hora da última modificação da linha.
+            description: data e hora da última modificação da linha.
 
       - name: salesperson
         description: Tabela que armazena informações sobre os vendedores.
         columns:
-          - name: BUSINESSENTITYID
-            description: ID único da entidade de negócios (vendedor).
+          - name: businessentityid
+            description: id único da entidade de negócios (vendedor).
             tests:
               - unique
               - not_null
-          - name: TERRITORYID
-            description: ID do território associado ao vendedor.
-          - name: SALESQUOTA
-            description: Cota de vendas atribuída ao vendedor.
-          - name: BONUS
-            description: Bônus recebido pelo vendedor.
-          - name: COMMISSIONPCT
-            description: Porcentagem de comissão recebida pelo vendedor.
-          - name: SALESYTD
-            description: Vendas no território ano até a data.
-          - name: SALESLASTYEAR
-            description: Vendas no território no ano anterior.
+          - name: territoryid
+            description: id do território associado ao vendedor.
+          - name: salesquota
+            description: cota de vendas atribuída ao vendedor.
+          - name: bonus
+            description: bônus recebido pelo vendedor.
+          - name: commissionpct
+            description: porcentagem de comissão recebida pelo vendedor.
+          - name: salesytd
+            description: vendas no território ano até a data.
+          - name: saleslastyear
+            description: vendas no território no ano anterior.
           - name: rowguid
-            description: GUID exclusivo da linha. Utilizado para integração e sincronização de dados.
+            description: guid exclusivo da linha. utilizado para integração e sincronização de dados.
           - name: modifieddate
-            description: Data e hora da última modificação da linha.
+            description: data e hora da última modificação da linha.
 
       - name: salesterritory
         description: Tabela que armazena informações sobre os territórios de vendas.
         columns:
-          - name: TERRITORYID
-            description: ID único do território de vendas.
+          - name: territoryid
+            description: id único do território de vendas.
             tests:
               - unique
               - not_null
-          - name: NAME
-            description: Nome do território de vendas.
-          - name: COUNTRYREGIONCODE
-            description: Código da região ou país associado ao território de vendas.
-          - name: GROUP_
-            description: Grupo ao qual o território de vendas pertence.
-          - name: SALESYTD
-            description: Vendas no território ano até a data.
-          - name: SALESLASTYEAR
-            description: Vendas no território no ano anterior.
-          - name: COSTYTD
-            description: Custo no território ano até a data.
-          - name: COSTLASTYEAR
-            description: Custo no território no ano anterior.
+          - name: name
+            description: nome do território de vendas.
+          - name: countryregioncode
+            description: código da região ou país associado ao território de vendas.
+          - name: group_
+            description: grupo ao qual o território de vendas pertence.
+          - name: salesytd
+            description: vendas no território ano até a data.
+          - name: saleslastyear
+            description: vendas no território no ano anterior.
+          - name: costytd
+            description: custo no território ano até a data.
+          - name: costlastyear
+            description: custo no território no ano anterior.
           - name: rowguid
-            description: GUID exclusivo da linha. Utilizado para integração e sincronização de dados.
+            description: guid exclusivo da linha. utilizado para integração e sincronização de dados.
           - name: modifieddate
-            description: Data e hora da última modificação da linha.
+            description: data e hora da última modificação da linha.
 
       - name: customer
         description: Tabela que armazena informações sobre clientes.
         columns:
-          - name: CUSTOMERID
-            description: ID único do cliente.
+          - name: customerid
+            description: id único do cliente.
             tests:
               - unique
               - not_null
-          - name: TERRITORYID
-            description: ID do território associado ao cliente.
-          - name: ACCOUNTNUMBER
-            description: Número da conta do cliente.
+          - name: personid
+            description: Chave estrangeira para pessoa.
+          - name: storeid
+            description: Chave estrangeira para loja.
+          - name: territoryid
+            description: id do território associado ao cliente.
+          - name: accountnumber
+            description: número da conta do cliente.
           - name: rowguid
-            description: GUID exclusivo da linha. Utilizado para integração e sincronização de dados.
+            description: guid exclusivo da linha. utilizado para integração e sincronização de dados.
           - name: modifieddate
-            description: Data e hora da última modificação da linha.
+            description: data e hora da última modificação da linha.
 
       - name: store
         description: Tabela que armazena informações sobre as lojas.
         columns:
-          - name: BUSINESSENTITYID
-            description: ID único da entidade de negócios (loja).
+          - name: businessentityid
+            description: id único da entidade de negócios (loja).
             tests:
               - unique
               - not_null
-          - name: NAME
-            description: Nome da loja.
-          - name: SALESPERSONID
-            description: ID do vendedor associado à loja.
-          - name: DEMOGRAPHICS
-            description: Informações demográficas associadas à loja.
+          - name: name
+            description: nome da loja.
+          - name: salespersonid
+            description: id do vendedor associado à loja.
+          - name: demographics
+            description: informações demográficas associadas à loja.
           - name: rowguid
-            description: GUID exclusivo da linha. Utilizado para integração e sincronização de dados.
+            description: guid exclusivo da linha. utilizado para integração e sincronização de dados.
           - name: modifieddate
-            description: Data e hora da última modificação da linha.
+            description: data e hora da última modificação da linha.
 
       - name: businessentity
         description: Tabela que armazena informações sobre entidades de negócios.
         columns:
-          - name: BUSINESSENTITYID
-            description: ID único da entidade de negócios.
+          - name: businessentityid
+            description: id único da entidade de negócios.
             tests:
               - unique
               - not_null
           - name: rowguid
-            description: GUID exclusivo da linha. Utilizado para integração e sincronização de dados.
+            description: guid exclusivo da linha. utilizado para integração e sincronização de dados.
           - name: modifieddate
-            description: Data e hora da última modificação da linha.
+            description: data e hora da última modificação da linha.
