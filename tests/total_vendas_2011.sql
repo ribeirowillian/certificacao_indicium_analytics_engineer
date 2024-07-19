@@ -6,8 +6,8 @@ with
     )
 select total_liquido 
 from vendas_2011 
-where total_liquido not between 12641673 and 12641674
+where total_liquido not between 12641664 and 12641665
 
 -- valor da que a contabilidade encontrou em 2011  $12.646.112,16.
 
--- Valor encontrado com nosso modelo $12.641.673,2
+-- Valor encontrado com nosso modelo $12.641.664,53
