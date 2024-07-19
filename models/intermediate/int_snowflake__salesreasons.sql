@@ -25,17 +25,17 @@ with
             , soh.fk_salespersonid
             , sr.pk_salesreasonid
             , case
-                when sr.reason_for_sale = 'price' then 'preço'
-                when sr.reason_for_sale = 'on promotion' then 'em promoção'
-                when sr.reason_for_sale = 'magazine advertisement' then 'anúncio de revista'
-                when sr.reason_for_sale = 'television advertisement' then 'anúncio de televisão'
-                when sr.reason_for_sale = 'manufacturer' then 'fabricante'
-                when sr.reason_for_sale = 'review' then 'análise'
-                when sr.reason_for_sale = 'demo event' then 'evento de demonstração'
-                when sr.reason_for_sale = 'sponsorship' then 'patrocínio'
-                when sr.reason_for_sale = 'quality' then 'qualidade'
-                when sr.reason_for_sale = 'other' then 'outro'
-                else 'sem motivo'
+                when sr.reason_for_sale = 'Price' then 'Preço'
+                when sr.reason_for_sale = 'On Promotion' then 'Em promoção'
+                when sr.reason_for_sale = 'Magazine Advertisement' then 'Anúncio de revista'
+                when sr.reason_for_sale = 'Television Advertisement' then 'Anúncio de televisão'
+                when sr.reason_for_sale = 'Manufacturer' then 'Fabricante'
+                when sr.reason_for_sale = 'Review' then 'Análise'
+                when sr.reason_for_sale = 'Demo Event' then 'Evento de demonstração'
+                when sr.reason_for_sale = 'Sponsorship' then 'Patrocínio'
+                when sr.reason_for_sale = 'Quality' then 'Qualidade'
+                when sr.reason_for_sale = 'Other' then 'Outro'
+                else 'Sem motivo' 
             end as motivo_da_venda
         from salesorderheaders soh
         left join
