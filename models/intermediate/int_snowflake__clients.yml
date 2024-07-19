@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: int_snowflake__clients
+    description: Tabela intermediária onde faz a junção das stagings -stg_snowflake__businessentitys, stg_snowflake__customers e stg_snowflake__stores.
+    columns: 
+      - name: pk_cliente
+        description: Chave primária da dimensão cliente.
+        tests:
+          - unique
+          - not_null
+      - name: cd_cliente
+        description: Chave do cliente.
+      - name: cd_loja
+        description: Chave do cliente loja.
+      - name: cd_pessoa
+        description: Chave do cliente pessoa .
+      - name: cd_vendedor_atribuido
+        description: Código do vendendor atribuido.
+      - name: tp_cliente
+        description: Tipo de cliente.
+      - name: nm_vendedor_atribuido
+        description: Nome do vendedor atribuido.
+      - name: nm_cliente
+        description: Nome do cliente.

@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: int_snowflake__salesreasons
+    description: Tabela intermediária onde é feita a junção das stagins stg_snowflake__salesorderheaders, stg_snowflake__salesreasons estg_snowflake__salesorderheadersalesreasons.
+      Pequena transformação na coluna reason_for_sale para deixar mais legível.
+    columns:
+      - name: pk_salesorderid
+        description: Chave primária que identifica o ID da ordem da venda.
+      - name: pk_salesreasonid
+        description: Chave primária que identifica o motivo da venda.
+      - name: fk_customerid
+        description: Chave estrangeira que referencia o cliente.
+      - name: fk_salespersonid
+        description: Chave estrangeira que referencia o vendedor.
+      - name: motivo_da_venda
+        description: Descrição do motivo da venda.

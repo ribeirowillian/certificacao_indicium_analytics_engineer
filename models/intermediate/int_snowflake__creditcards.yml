@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: int_snowflake__creditcards
+    description: Tabela intermediária onde faz a junção das stagins stg_snowflake__creditcards e stg_snowflake__personcreditcards.
+    columns: 
+      - name: pk_businessentityid
+        description: Chave primária da dimensão cartões de crédito.
+        tests:
+          - unique
+          - not_null
+      - name: fk_creditcardid
+        description: Chave do id do cartão de crédito do cliente.
+        tests:
+          - unique
+          - not_null
+      - name: cardtype
+        description: Descrição do tipo de cartão.
