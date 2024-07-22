@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: dim_clients
-    description: Tabela dimensão dos endereços dos clientes da Adventure Works.
+    description: Tabela dimensão onde contém os clientes que fizeram compras na Adventure Works.
     columns: 
       - name: pk_cliente
         description: Chave primária da dimensão cliente.
